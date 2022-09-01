@@ -2,18 +2,22 @@ package opgave5;
 
 public class TowerOfHanoi {
     public static void main(String[] args) {
-        System.out.println(moverings(5));
+        System.out.println(move(3, 1, 3));
+
     }
 
-    public static void move(int disks, int from, int to) {
+    public static int move(int disks, int from, int to) {
         int other = 6 - from - to;
+        int result = 0;
         if (disks== 1) {
+            result = 1;
             System.out.println("Move from " + from + " to " + to);
         } else {
-            move(disks- 1, from, other);
-            System.out.println("Move from " + from + " to " + to);
-            move(disks- 1, other, to);
+            result += move(disks- 1, from, other);
+            result += move(1, from, to);
+            result += move(disks- 1, other, to);
         }
+        return result;
     }
 
     public static int moverings(int n){
